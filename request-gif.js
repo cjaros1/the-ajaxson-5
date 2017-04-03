@@ -18,6 +18,13 @@ function fetchAndDisplayGif(event) {
     // Because we will be making our own AJAX request, we dont need to send a normal request and we definitely don't want the page to refresh.
     event.preventDefault();
 
+    if(document.getElementById("validation").value != "5"){
+      setGifLoadedStatus(false);
+      $("#feedback").attr("hidden", false);
+      $("#feedback").text("Sorry, we don't serve droids here!");
+
+      return;
+    }
     // get the user's input text from the DOM
     var searchQuery = document.getElementById("tag").value; // TODO should be e.g. "dance" DONE!!!
     console.log(searchQuery);
@@ -63,6 +70,7 @@ function fetchAndDisplayGif(event) {
 
     // TODO
     // give the user a "Loading..." message while they wait DONE!!!!
+    setGifLoadedStatus(false);
     document.getElementById("feedback").innerHTML="Loading...";
 
 }
